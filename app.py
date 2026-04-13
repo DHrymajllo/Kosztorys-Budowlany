@@ -68,13 +68,20 @@ def api_calculate():
     rooms: list[Room] = []
     for rd in data["rooms"]:
         try:
+            width  = float(rd["width"])
+            length = float(rd["length"])
+            height = float(rd.get("height", 2.6))
+            if width <= 0 or length <= 0:
+                return jsonify({"error": "Szerokość i długość muszą być większe od 0."}), 400
+            if height < 1.5:
+                return jsonify({"error": "Wysokość nie może być mniejsza niż 1.5 m."}), 400
             room = Room(
-                name    = rd.get("name", "Pomieszczenie"),
-                width   = float(rd["width"]),
-                length  = float(rd["length"]),
-                height  = float(rd.get("height", 2.6)),
-                windows = int(rd.get("windows", 1)),
-                doors   = int(rd.get("doors", 1)),
+                name    = str(rd.get("name", "Pomieszczenie"))[:60],
+                width   = width,
+                length  = length,
+                height  = height,
+                windows = max(0, int(rd.get("windows", 1))),
+                doors   = max(0, int(rd.get("doors", 1))),
                 floor_material   = rd.get("floor_material"),
                 wall_material    = rd.get("wall_material"),
                 ceiling_material = rd.get("ceiling_material"),

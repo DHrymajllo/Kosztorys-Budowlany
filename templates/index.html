@@ -9,134 +9,144 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #f4f5f7;
-      --surface:  #ffffff;
-      --primary:  #e8480f;
-      --primary2: #0060a9;
-      --text:     #1a1a2e;
-      --muted:    #6b7280;
-      --border:   #e5e7eb;
-      --shadow:   0 2px 8px rgba(0,0,0,.08);
-      --radius:   10px;
+      --bg:      #f4f5f7;
+      --surface: #ffffff;
+      --primary: #e8480f;
+      --blue:    #0060a9;
+      --text:    #1a1a2e;
+      --muted:   #6b7280;
+      --border:  #e5e7eb;
+      --shadow:  0 2px 8px rgba(0,0,0,.08);
+      --radius:  10px;
     }
 
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    /* ── HEADER ── */
-    header { background: var(--surface); box-shadow: var(--shadow); padding: 0 24px; display: flex; align-items: center; gap: 16px; height: 60px; position: sticky; top: 0; z-index: 100; }
-    header h1 { font-size: 1.2rem; font-weight: 700; }
+    /* HEADER */
+    header { background: var(--surface); box-shadow: var(--shadow); padding: 0 24px; display: flex; align-items: center; gap: 14px; height: 60px; position: sticky; top: 0; z-index: 100; }
+    header h1 { font-size: 1.15rem; font-weight: 700; white-space: nowrap; }
     header h1 span { color: var(--primary); }
-    .badge-lm  { background: #e8480f; color: #fff; font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; }
-    .badge-ca  { background: #0060a9; color: #fff; font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; }
-    .header-spacer { flex: 1; }
-    .store-toggle { display: flex; gap: 8px; align-items: center; font-size: .85rem; }
+    .badge { font-size: .68rem; font-weight: 700; padding: 2px 9px; border-radius: 99px; color: #fff; }
+    .badge-lm { background: var(--primary); }
+    .badge-ca { background: var(--blue); }
+    .spacer { flex: 1; }
+    .store-toggle { display: flex; gap: 10px; align-items: center; font-size: .85rem; white-space: nowrap; }
     .store-toggle label { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .store-lm { color: var(--primary); font-weight: 700; }
+    .store-ca { color: var(--blue); font-weight: 700; }
 
-    /* ── LAYOUT ── */
+    /* LAYOUT */
     .layout { display: grid; grid-template-columns: 340px 1fr; gap: 20px; padding: 20px; max-width: 1400px; margin: 0 auto; }
     @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
 
-    /* ── PANEL ── */
+    /* PANEL */
     .panel { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+    .panel + .panel { margin-top: 16px; }
     .panel-title { font-size: 1rem; font-weight: 700; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
 
-    /* ── FORMS ── */
+    /* FORMS */
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .form-group { display: flex; flex-direction: column; gap: 4px; }
     .form-group.full { grid-column: 1 / -1; }
-    label { font-size: .8rem; font-weight: 600; color: var(--muted); }
-    input, select { border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; font-size: .9rem; width: 100%; transition: border .2s; }
-    input:focus, select:focus { outline: none; border-color: var(--primary); }
+    label.field-label { font-size: .78rem; font-weight: 600; color: var(--muted); }
+    input[type="number"], select {
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 7px 10px; font-size: .9rem; width: 100%;
+      transition: border-color .2s; background: #fff; color: var(--text);
+    }
+    input[type="number"]:focus, select:focus { outline: none; border-color: var(--primary); }
 
-    /* ── BUTTONS ── */
-    .btn { border: none; cursor: pointer; border-radius: 6px; padding: 9px 18px; font-size: .875rem; font-weight: 600; transition: opacity .15s, transform .1s; }
+    /* BUTTONS */
+    .btn { border: none; cursor: pointer; border-radius: 7px; padding: 9px 18px; font-size: .875rem; font-weight: 600; transition: opacity .15s, transform .1s; }
     .btn:active { transform: scale(.97); }
-    .btn-primary   { background: var(--primary); color: #fff; }
-    .btn-secondary { background: var(--primary2); color: #fff; }
-    .btn-ghost     { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
-    .btn-danger    { background: #fee2e2; color: #b91c1c; }
-    .btn-sm        { padding: 5px 12px; font-size: .8rem; }
-    .btn:hover     { opacity: .88; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-ghost   { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+    .btn-danger  { background: #fee2e2; color: #b91c1c; }
+    .btn-sm      { padding: 4px 11px; font-size: .78rem; }
+    .btn:hover   { opacity: .88; }
+    .row-btns    { display: flex; gap: 8px; margin-top: 14px; }
 
-    /* ── ROOM LIST ── */
+    /* ROOM LIST */
     .room-item { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
     .room-item:hover { border-color: #aaa; }
     .room-item.active { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(232,72,15,.12); }
     .room-item-header { display: flex; justify-content: space-between; align-items: center; }
     .room-name { font-weight: 700; font-size: .95rem; }
-    .room-meta { font-size: .78rem; color: var(--muted); margin-top: 3px; }
-    .room-mat-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-    .chip { font-size: .7rem; padding: 2px 8px; border-radius: 99px; background: #f0f0f0; color: #444; }
-    .chip.floor   { background: #fef3c7; color: #92400e; }
-    .chip.wall    { background: #dbeafe; color: #1e40af; }
-    .chip.ceiling { background: #d1fae5; color: #065f46; }
+    .room-meta { font-size: .76rem; color: var(--muted); margin-top: 3px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .chip { font-size: .68rem; padding: 2px 8px; border-radius: 99px; }
+    .chip-floor   { background: #fef3c7; color: #92400e; }
+    .chip-wall    { background: #dbeafe; color: #1e40af; }
+    .chip-ceiling { background: #d1fae5; color: #065f46; }
 
-    /* ── MATERIAL EDITOR ── */
-    .mat-section { margin-bottom: 18px; }
-    .mat-section-title { font-size: .9rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-    .mat-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-    .mat-dot.floor   { background: #f59e0b; }
-    .mat-dot.wall    { background: #3b82f6; }
-    .mat-dot.ceiling { background: #10b981; }
+    /* TABS */
+    .tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 20px; }
+    .tab { padding: 10px 20px; font-size: .9rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; color: var(--muted); transition: color .2s; user-select: none; }
+    .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
 
-    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    /* MATERIAL SECTION */
+    .mat-section { margin-bottom: 22px; }
+    .mat-title { font-size: .9rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .dot-floor   { background: #f59e0b; }
+    .dot-wall    { background: #3b82f6; }
+    .dot-ceiling { background: #10b981; }
+
+    /* PRODUCT GRID */
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
     .product-card { border: 2px solid var(--border); border-radius: 8px; padding: 10px; cursor: pointer; transition: border-color .2s; }
     .product-card:hover { border-color: #999; }
     .product-card.selected { border-color: var(--primary); background: #fff5f0; }
-    .product-card .prod-name { font-size: .82rem; font-weight: 600; line-height: 1.3; }
-    .product-card .prod-price { font-size: 1rem; font-weight: 700; color: var(--primary); margin-top: 4px; }
-    .product-card .prod-store { font-size: .7rem; color: var(--muted); margin-top: 2px; }
-    .store-lm { color: #e8480f; font-weight: 700; }
-    .store-ca { color: #0060a9; font-weight: 700; }
+    .prod-name  { font-size: .82rem; font-weight: 600; line-height: 1.3; }
+    .prod-price { font-size: 1rem; font-weight: 700; color: var(--primary); margin-top: 4px; }
+    .prod-store { font-size: .7rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── RESULT ── */
-    .result-room { margin-bottom: 18px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .result-room-header { background: #f9fafb; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-    .result-room-header h3 { font-size: .95rem; font-weight: 700; }
-    .result-room-body { padding: 0 16px 12px; }
-    .result-section { margin-top: 10px; }
-    .result-section-title { font-size: .8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
-    table.items { width: 100%; border-collapse: collapse; font-size: .85rem; }
-    table.items th { text-align: left; padding: 4px 8px; color: var(--muted); font-weight: 600; font-size: .75rem; border-bottom: 1px solid var(--border); }
-    table.items td { padding: 5px 8px; border-bottom: 1px solid #f3f4f6; }
-    table.items td.right { text-align: right; }
+    /* RESULT */
+    .grand-box { background: linear-gradient(135deg, var(--primary), #c73b0a); color: #fff; border-radius: var(--radius); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .grand-box .gl { font-size: .9rem; opacity: .85; }
+    .grand-box .ga { font-size: 2rem; font-weight: 800; }
+
+    .result-room { margin-bottom: 14px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .result-room-hdr { background: #f9fafb; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+    .result-room-hdr h3 { font-size: .95rem; font-weight: 700; }
+    .result-room-body { padding: 4px 16px 14px; }
+    .result-section { margin-top: 12px; }
+    .result-section-title { font-size: .75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+    .room-total { font-size: .95rem; font-weight: 700; color: var(--primary); }
+
+    table.items { width: 100%; border-collapse: collapse; font-size: .84rem; }
+    table.items th { text-align: left; padding: 4px 8px; color: var(--muted); font-size: .73rem; font-weight: 600; border-bottom: 1px solid var(--border); }
+    table.items td { padding: 5px 8px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
     table.items tr:last-child td { border-bottom: none; }
-    .room-total { font-size: 1rem; font-weight: 700; color: var(--primary); }
+    .r { text-align: right; }
 
-    .grand-total-box { background: linear-gradient(135deg, #e8480f, #c73b0a); color: #fff; border-radius: var(--radius); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .grand-total-box .label { font-size: .9rem; opacity: .85; }
-    .grand-total-box .amount { font-size: 2rem; font-weight: 800; }
-
-    /* ── TABS ── */
-    .tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 20px; }
-    .tab { padding: 10px 20px; font-size: .9rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color .2s; color: var(--muted); }
-    .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-
-    /* ── MISC ── */
+    /* MISC */
     .empty-state { text-align: center; padding: 48px 24px; color: var(--muted); }
-    .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+    .empty-state .icon { font-size: 2.8rem; margin-bottom: 12px; }
     .empty-state p { font-size: .95rem; }
-    .row-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-    .source-pill { font-size: .7rem; padding: 2px 10px; border-radius: 99px; }
-    .source-live     { background: #d1fae5; color: #065f46; }
-    .source-cache    { background: #dbeafe; color: #1e40af; }
-    .source-fallback { background: #fef3c7; color: #92400e; }
-    .spinner { border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; width: 28px; height: 28px; animation: spin .7s linear infinite; margin: 32px auto; }
+    .spinner { border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; width: 30px; height: 30px; animation: spin .7s linear infinite; margin: 40px auto; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .alert { padding: 12px 16px; border-radius: 8px; font-size: .87rem; margin-bottom: 14px; }
     .alert-err { background: #fee2e2; color: #b91c1c; }
-    .alert-ok  { background: #d1fae5; color: #065f46; }
+    .room-info-bar { font-size: .85rem; color: var(--muted); margin-bottom: 18px; background: #f9fafb; border-radius: 7px; padding: 10px 14px; display: flex; gap: 18px; flex-wrap: wrap; }
+    .room-info-bar strong { color: var(--text); }
+
+    @media print {
+      header, .layout > div:first-child, .tabs, .btn { display: none !important; }
+      .panel { box-shadow: none; }
+      .grand-box { background: #333 !important; print-color-adjust: exact; }
+    }
   </style>
 </head>
 <body>
+{% raw %}
 <div id="app">
 
-  <!-- HEADER -->
   <header>
     <h1>Kosztorys <span>Budowlany</span></h1>
-    <span class="badge-lm">Leroy Merlin</span>
-    <span class="badge-ca">Castorama</span>
-    <div class="header-spacer"></div>
+    <span class="badge badge-lm">Leroy Merlin</span>
+    <span class="badge badge-ca">Castorama</span>
+    <div class="spacer"></div>
     <div class="store-toggle">
       Sklep:
       <label><input type="radio" v-model="selectedStore" value="leroy_merlin"/> <span class="store-lm">Leroy Merlin</span></label>
@@ -144,17 +154,15 @@
     </div>
   </header>
 
-  <!-- LAYOUT -->
   <div class="layout">
 
-    <!-- LEWA KOLUMNA: pomieszczenia -->
+    <!-- LEWA KOLUMNA -->
     <div>
-      <!-- Formularz dodawania -->
-      <div class="panel" style="margin-bottom:16px">
+      <div class="panel">
         <div class="panel-title">Dodaj pomieszczenie</div>
         <div class="form-grid">
           <div class="form-group full">
-            <label>Nazwa</label>
+            <label class="field-label">Nazwa</label>
             <select v-model="form.name">
               <option>Salon</option><option>Sypialnia</option><option>Kuchnia</option>
               <option>Łazienka</option><option>Korytarz</option><option>Gabinet</option>
@@ -162,45 +170,44 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Szerokość (m)</label>
-            <input type="number" v-model.number="form.width"  step="0.1" min="0.5" placeholder="np. 3.5"/>
+            <label class="field-label">Szerokość (m)</label>
+            <input type="number" v-model.number="form.width" step="0.1" min="0.5" placeholder="np. 3.5"/>
           </div>
           <div class="form-group">
-            <label>Długość (m)</label>
+            <label class="field-label">Długość (m)</label>
             <input type="number" v-model.number="form.length" step="0.1" min="0.5" placeholder="np. 5.0"/>
           </div>
           <div class="form-group">
-            <label>Wysokość (m)</label>
-            <input type="number" v-model.number="form.height" step="0.1" min="1.8" placeholder="np. 2.6"/>
+            <label class="field-label">Wysokość (m)</label>
+            <input type="number" v-model.number="form.height" step="0.05" min="1.8" placeholder="np. 2.6"/>
           </div>
           <div class="form-group">
-            <label>Okna (szt.)</label>
+            <label class="field-label">Okna (szt.)</label>
             <input type="number" v-model.number="form.windows" min="0" step="1"/>
           </div>
           <div class="form-group">
-            <label>Drzwi (szt.)</label>
+            <label class="field-label">Drzwi (szt.)</label>
             <input type="number" v-model.number="form.doors" min="0" step="1"/>
           </div>
         </div>
         <div class="row-btns">
-          <button class="btn btn-primary" @click="addRoom">Dodaj pomieszczenie</button>
+          <button class="btn btn-primary" @click="addRoom">+ Dodaj pomieszczenie</button>
         </div>
-        <p v-if="formError" class="alert alert-err" style="margin-top:10px">{{ formError }}</p>
+        <div v-if="formError" class="alert alert-err" style="margin-top:10px">{{ formError }}</div>
       </div>
 
-      <!-- Lista pomieszczeń -->
       <div class="panel">
         <div class="panel-title">Pomieszczenia ({{ rooms.length }})</div>
         <div v-if="rooms.length === 0" class="empty-state">
           <div class="icon">🏠</div>
-          <p>Dodaj pierwsze pomieszczenie</p>
+          <p>Dodaj pierwsze pomieszczenie powyżej.</p>
         </div>
         <div
           v-for="(room, i) in rooms"
           :key="room.id"
           class="room-item"
           :class="{active: activeRoomIdx === i}"
-          @click="activeRoomIdx = i; activeTab = 'materials'"
+          @click="selectRoom(i)"
         >
           <div class="room-item-header">
             <span class="room-name">{{ room.name }}</span>
@@ -208,12 +215,12 @@
           </div>
           <div class="room-meta">
             {{ room.width }} × {{ room.length }} m | h={{ room.height }} m
-            | pow. podłogi: <strong>{{ (room.width * room.length).toFixed(2) }} m²</strong>
+            | <strong>{{ floorAreaOf(room) }} m²</strong> podłogi
           </div>
-          <div class="room-mat-chips">
-            <span v-if="room.floor_material"   class="chip floor">   Podłoga: {{ shortCat(room.floor_material.category) }}</span>
-            <span v-if="room.wall_material"    class="chip wall">    Ściany: {{ shortCat(room.wall_material.category) }}</span>
-            <span v-if="room.ceiling_material" class="chip ceiling"> Sufit: {{ shortCat(room.ceiling_material.category) }}</span>
+          <div class="chips">
+            <span v-if="room.floor_material"   class="chip chip-floor">   Podłoga: {{ shortCat(room.floor_material.category) }}</span>
+            <span v-if="room.wall_material"    class="chip chip-wall">    Ściany: {{ shortCat(room.wall_material.category) }}</span>
+            <span v-if="room.ceiling_material" class="chip chip-ceiling"> Sufit: {{ shortCat(room.ceiling_material.category) }}</span>
           </div>
         </div>
       </div>
@@ -223,52 +230,53 @@
     <div>
       <div class="panel">
         <div class="tabs">
-          <div class="tab" :class="{active: activeTab==='materials'}" @click="activeTab='materials'">Dobór materiałów</div>
-          <div class="tab" :class="{active: activeTab==='result'}"    @click="computeResult(); activeTab='result'">Kosztorys</div>
+          <div class="tab" :class="{active: activeTab==='materials'}" @click="activeTab='materials'">
+            Dobór materiałów
+          </div>
+          <div class="tab" :class="{active: activeTab==='result'}" @click="switchToResult()">
+            Kosztorys
+          </div>
         </div>
 
-        <!-- === TAB: MATERIAŁY === -->
-        <div v-if="activeTab === 'materials'">
+        <!-- TAB: MATERIAŁY -->
+        <template v-if="activeTab === 'materials'">
           <div v-if="activeRoomIdx === null || rooms.length === 0" class="empty-state">
             <div class="icon">🎨</div>
             <p>Wybierz pomieszczenie z listy, aby dobrać materiały.</p>
           </div>
-          <div v-else>
-            <h2 style="margin-bottom:16px; font-size:1.1rem;">
-              {{ rooms[activeRoomIdx].name }}
-              <small style="font-weight:400;color:var(--muted);">
-                — podłoga {{ rooms[activeRoomIdx].floor_area.toFixed(2) }} m²,
-                ściany {{ rooms[activeRoomIdx].wall_area.toFixed(2) }} m²
-              </small>
-            </h2>
+          <template v-else>
+            <div class="room-info-bar">
+              <span>Podłoga: <strong>{{ floorAreaOf(activeRoom) }} m²</strong></span>
+              <span>Ściany: <strong>{{ wallAreaOf(activeRoom) }} m²</strong></span>
+              <span>Sufit: <strong>{{ floorAreaOf(activeRoom) }} m²</strong></span>
+              <span>Obwód: <strong>{{ perimeterOf(activeRoom) }} m</strong></span>
+            </div>
 
             <!-- PODŁOGA -->
             <div class="mat-section">
-              <div class="mat-section-title">
-                <span class="mat-dot floor"></span> Podłoga
-              </div>
-              <div class="form-group" style="margin-bottom:10px;max-width:280px">
-                <label>Typ materiału</label>
-                <select v-model="rooms[activeRoomIdx].floorCat" @change="rooms[activeRoomIdx].floor_material=null">
+              <div class="mat-title"><span class="dot dot-floor"></span> Podłoga</div>
+              <div class="form-group" style="max-width:280px">
+                <label class="field-label">Typ materiału</label>
+                <select v-model="activeRoom.floorCat" @change="activeRoom.floor_material = null">
                   <option value="">— wybierz —</option>
                   <option value="panele_podlogowe">Panele podłogowe</option>
                   <option value="plytki_podlogowe">Płytki podłogowe</option>
                   <option value="wykładzina">Wykładzina</option>
                 </select>
               </div>
-              <div v-if="rooms[activeRoomIdx].floorCat" class="product-grid">
+              <div v-if="activeRoom.floorCat" class="product-grid">
                 <div
-                  v-for="prod in productsFor(rooms[activeRoomIdx].floorCat)"
-                  :key="prod.name+prod.store"
+                  v-for="prod in productsFor(activeRoom.floorCat)"
+                  :key="prod.name"
                   class="product-card"
-                  :class="{selected: isSelected(activeRoomIdx,'floor',prod)}"
-                  @click="selectMat(activeRoomIdx,'floor',rooms[activeRoomIdx].floorCat,prod)"
+                  :class="{selected: isSelected(activeRoom, 'floor', prod)}"
+                  @click="selectMat(activeRoom, 'floor', activeRoom.floorCat, prod)"
                 >
                   <div class="prod-name">{{ prod.name }}</div>
                   <div class="prod-price">{{ prod.price.toFixed(2) }} zł / {{ prod.unit }}</div>
                   <div class="prod-store">
-                    <span :class="prod.store==='leroy_merlin'?'store-lm':'store-ca'">
-                      {{ prod.store==='leroy_merlin'?'Leroy Merlin':'Castorama' }}
+                    <span :class="prod.store === 'leroy_merlin' ? 'store-lm' : 'store-ca'">
+                      {{ prod.store === 'leroy_merlin' ? 'Leroy Merlin' : 'Castorama' }}
                     </span>
                   </div>
                 </div>
@@ -277,31 +285,29 @@
 
             <!-- ŚCIANY -->
             <div class="mat-section">
-              <div class="mat-section-title">
-                <span class="mat-dot wall"></span> Ściany
-              </div>
-              <div class="form-group" style="margin-bottom:10px;max-width:280px">
-                <label>Typ materiału</label>
-                <select v-model="rooms[activeRoomIdx].wallCat" @change="rooms[activeRoomIdx].wall_material=null">
+              <div class="mat-title"><span class="dot dot-wall"></span> Ściany</div>
+              <div class="form-group" style="max-width:280px">
+                <label class="field-label">Typ materiału</label>
+                <select v-model="activeRoom.wallCat" @change="activeRoom.wall_material = null">
                   <option value="">— wybierz —</option>
                   <option value="farba_do_scian">Farba do ścian</option>
                   <option value="tapeta">Tapeta</option>
                   <option value="plytki_scienne">Płytki ścienne</option>
                 </select>
               </div>
-              <div v-if="rooms[activeRoomIdx].wallCat" class="product-grid">
+              <div v-if="activeRoom.wallCat" class="product-grid">
                 <div
-                  v-for="prod in productsFor(rooms[activeRoomIdx].wallCat)"
-                  :key="prod.name+prod.store"
+                  v-for="prod in productsFor(activeRoom.wallCat)"
+                  :key="prod.name"
                   class="product-card"
-                  :class="{selected: isSelected(activeRoomIdx,'wall',prod)}"
-                  @click="selectMat(activeRoomIdx,'wall',rooms[activeRoomIdx].wallCat,prod)"
+                  :class="{selected: isSelected(activeRoom, 'wall', prod)}"
+                  @click="selectMat(activeRoom, 'wall', activeRoom.wallCat, prod)"
                 >
                   <div class="prod-name">{{ prod.name }}</div>
                   <div class="prod-price">{{ prod.price.toFixed(2) }} zł / {{ prod.unit }}</div>
                   <div class="prod-store">
-                    <span :class="prod.store==='leroy_merlin'?'store-lm':'store-ca'">
-                      {{ prod.store==='leroy_merlin'?'Leroy Merlin':'Castorama' }}
+                    <span :class="prod.store === 'leroy_merlin' ? 'store-lm' : 'store-ca'">
+                      {{ prod.store === 'leroy_merlin' ? 'Leroy Merlin' : 'Castorama' }}
                     </span>
                   </div>
                 </div>
@@ -310,132 +316,128 @@
 
             <!-- SUFIT -->
             <div class="mat-section">
-              <div class="mat-section-title">
-                <span class="mat-dot ceiling"></span> Sufit
-              </div>
-              <div class="form-group" style="margin-bottom:10px;max-width:280px">
-                <label>Typ materiału</label>
-                <select v-model="rooms[activeRoomIdx].ceilingCat" @change="rooms[activeRoomIdx].ceiling_material=null">
+              <div class="mat-title"><span class="dot dot-ceiling"></span> Sufit</div>
+              <div class="form-group" style="max-width:280px">
+                <label class="field-label">Typ materiału</label>
+                <select v-model="activeRoom.ceilingCat" @change="activeRoom.ceiling_material = null">
                   <option value="">— wybierz —</option>
                   <option value="farba_sufitowa">Farba sufitowa</option>
                   <option value="farba_do_scian">Farba do ścian (biała)</option>
                 </select>
               </div>
-              <div v-if="rooms[activeRoomIdx].ceilingCat" class="product-grid">
+              <div v-if="activeRoom.ceilingCat" class="product-grid">
                 <div
-                  v-for="prod in productsFor(rooms[activeRoomIdx].ceilingCat)"
-                  :key="prod.name+prod.store"
+                  v-for="prod in productsFor(activeRoom.ceilingCat)"
+                  :key="prod.name"
                   class="product-card"
-                  :class="{selected: isSelected(activeRoomIdx,'ceiling',prod)}"
-                  @click="selectMat(activeRoomIdx,'ceiling',rooms[activeRoomIdx].ceilingCat,prod)"
+                  :class="{selected: isSelected(activeRoom, 'ceiling', prod)}"
+                  @click="selectMat(activeRoom, 'ceiling', activeRoom.ceilingCat, prod)"
                 >
                   <div class="prod-name">{{ prod.name }}</div>
                   <div class="prod-price">{{ prod.price.toFixed(2) }} zł / {{ prod.unit }}</div>
                   <div class="prod-store">
-                    <span :class="prod.store==='leroy_merlin'?'store-lm':'store-ca'">
-                      {{ prod.store==='leroy_merlin'?'Leroy Merlin':'Castorama' }}
+                    <span :class="prod.store === 'leroy_merlin' ? 'store-lm' : 'store-ca'">
+                      {{ prod.store === 'leroy_merlin' ? 'Leroy Merlin' : 'Castorama' }}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-          </div>
-        </div>
+          </template>
+        </template>
 
-        <!-- === TAB: KOSZTORYS === -->
-        <div v-if="activeTab === 'result'">
+        <!-- TAB: KOSZTORYS -->
+        <template v-if="activeTab === 'result'">
           <div v-if="calcLoading" class="spinner"></div>
           <div v-else-if="calcError" class="alert alert-err">{{ calcError }}</div>
           <div v-else-if="!calcResult" class="empty-state">
             <div class="icon">📋</div>
-            <p>Kliknij zakładkę „Kosztorys", aby wyliczyć koszty.</p>
+            <p>Przejdź do zakładki Kosztorys, aby wyliczyć koszty.</p>
           </div>
-          <div v-else>
-            <div class="grand-total-box">
+          <template v-else>
+            <div class="grand-box">
               <div>
-                <div class="label">Łączny kosztorys materiałów</div>
-                <div class="amount">{{ fmt(calcResult.grand_total) }} zł</div>
+                <div class="gl">Łączny kosztorys materiałów</div>
+                <div class="ga">{{ fmt(calcResult.grand_total) }} zł</div>
               </div>
               <div style="text-align:right;font-size:.85rem;opacity:.8">
-                {{ calcResult.rooms.length }} pomieszczeń
+                {{ calcResult.rooms.length }} pomieszcz.
               </div>
             </div>
 
             <div v-if="calcResult.rooms.length === 0" class="empty-state">
-              <p>Nie wybrano żadnych materiałów.</p>
+              <p>Nie wybrano żadnych materiałów — wróć do zakładki "Dobór materiałów".</p>
             </div>
 
             <div v-for="room in calcResult.rooms" :key="room.room_name" class="result-room">
-              <div class="result-room-header" @click="toggleRoom(room.room_name)">
+              <div class="result-room-hdr" @click="toggleRoom(room.room_name)">
                 <h3>{{ room.room_name }}</h3>
                 <div style="display:flex;align-items:center;gap:16px">
                   <small style="color:var(--muted)">{{ room.floor_area }} m²</small>
                   <span class="room-total">{{ fmt(room.total) }} zł</span>
-                  <span>{{ openRooms.has(room.room_name) ? '▲' : '▼' }}</span>
+                  <span style="color:var(--muted)">{{ openRooms[room.room_name] ? '▲' : '▼' }}</span>
                 </div>
               </div>
-              <div v-if="openRooms.has(room.room_name)" class="result-room-body">
-
+              <div v-if="openRooms[room.room_name]" class="result-room-body">
                 <div v-if="room.floor_lines.length" class="result-section">
                   <div class="result-section-title">Podłoga</div>
                   <table class="items">
-                    <thead><tr><th>Pozycja</th><th>Ilość</th><th>Jedn.</th><th>Cena</th><th>Wartość</th></tr></thead>
+                    <thead><tr><th>Pozycja</th><th class="r">Ilość</th><th>Jedn.</th><th class="r">Cena jedn.</th><th class="r">Wartość</th></tr></thead>
                     <tbody>
                       <tr v-for="l in room.floor_lines" :key="l.description">
                         <td>{{ l.description }}</td>
-                        <td class="right">{{ l.qty }}</td>
+                        <td class="r">{{ l.qty }}</td>
                         <td>{{ l.unit }}</td>
-                        <td class="right">{{ l.unit_price.toFixed(2) }} zł</td>
-                        <td class="right"><strong>{{ fmt(l.total) }} zł</strong></td>
+                        <td class="r">{{ l.unit_price.toFixed(2) }} zł</td>
+                        <td class="r"><strong>{{ fmt(l.total) }} zł</strong></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-
                 <div v-if="room.wall_lines.length" class="result-section">
                   <div class="result-section-title">Ściany</div>
                   <table class="items">
-                    <thead><tr><th>Pozycja</th><th>Ilość</th><th>Jedn.</th><th>Cena</th><th>Wartość</th></tr></thead>
+                    <thead><tr><th>Pozycja</th><th class="r">Ilość</th><th>Jedn.</th><th class="r">Cena jedn.</th><th class="r">Wartość</th></tr></thead>
                     <tbody>
                       <tr v-for="l in room.wall_lines" :key="l.description">
                         <td>{{ l.description }}</td>
-                        <td class="right">{{ l.qty }}</td>
+                        <td class="r">{{ l.qty }}</td>
                         <td>{{ l.unit }}</td>
-                        <td class="right">{{ l.unit_price.toFixed(2) }} zł</td>
-                        <td class="right"><strong>{{ fmt(l.total) }} zł</strong></td>
+                        <td class="r">{{ l.unit_price.toFixed(2) }} zł</td>
+                        <td class="r"><strong>{{ fmt(l.total) }} zł</strong></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-
                 <div v-if="room.ceiling_lines.length" class="result-section">
                   <div class="result-section-title">Sufit</div>
                   <table class="items">
-                    <thead><tr><th>Pozycja</th><th>Ilość</th><th>Jedn.</th><th>Cena</th><th>Wartość</th></tr></thead>
+                    <thead><tr><th>Pozycja</th><th class="r">Ilość</th><th>Jedn.</th><th class="r">Cena jedn.</th><th class="r">Wartość</th></tr></thead>
                     <tbody>
                       <tr v-for="l in room.ceiling_lines" :key="l.description">
                         <td>{{ l.description }}</td>
-                        <td class="right">{{ l.qty }}</td>
+                        <td class="r">{{ l.qty }}</td>
                         <td>{{ l.unit }}</td>
-                        <td class="right">{{ l.unit_price.toFixed(2) }} zł</td>
-                        <td class="right"><strong>{{ fmt(l.total) }} zł</strong></td>
+                        <td class="r">{{ l.unit_price.toFixed(2) }} zł</td>
+                        <td class="r"><strong>{{ fmt(l.total) }} zł</strong></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-
               </div>
             </div>
 
-            <button class="btn btn-ghost" style="margin-top:8px" @click="printPage">Drukuj kosztorys</button>
-          </div>
-        </div>
+            <div style="margin-top:12px">
+              <button class="btn btn-ghost" @click="window.print()">Drukuj kosztorys</button>
+            </div>
+          </template>
+        </template>
 
-      </div><!-- /panel -->
-    </div><!-- /right col -->
-  </div><!-- /layout -->
-</div><!-- /app -->
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 const { createApp, ref, reactive, computed, onMounted } = Vue;
@@ -449,23 +451,48 @@ createApp({
     const calcResult    = ref(null);
     const calcLoading   = ref(false);
     const calcError     = ref('');
-    const openRooms     = reactive(new Set());
-    const allPrices     = ref({});   // { category: { leroy_merlin: [...], castorama: [...] } }
+    // Reaktywna mapa otwartych sekcji kosztorysu: { nazwaPokoiku: true/false }
+    const openRooms     = reactive({});
+    const allPrices     = ref({});
 
-    const form = reactive({
-      name: 'Salon', width: 4.0, length: 5.0, height: 2.6, windows: 1, doors: 1,
-    });
+    const form = reactive({ name: 'Salon', width: 4.0, length: 5.0, height: 2.6, windows: 1, doors: 1 });
 
-    let nextId = 1;
+    // Surowa tablica pokoi — BEZPOŚREDNIO reaktywna, bez computed-wrap
     const rooms = ref([]);
+    let nextId = 1;
 
-    // Pobierz ceny przy starcie
+    // Aktywny pokój jako computed — BEZPOŚREDNIA referencja do obiektu z tablicy
+    const activeRoom = computed(() =>
+      activeRoomIdx.value !== null ? rooms.value[activeRoomIdx.value] : null
+    );
+
+    // ── Pola pomocnicze ──────────────────────────────────
+
+    function floorAreaOf(room) {
+      return parseFloat((room.width * room.length).toFixed(2));
+    }
+    function wallAreaOf(room) {
+      return parseFloat(
+        Math.max(
+          2 * (room.width + room.length) * room.height
+            - (room.windows || 0) * 1.5
+            - (room.doors   || 0) * 1.9,
+          0
+        ).toFixed(2)
+      );
+    }
+    function perimeterOf(room) {
+      return parseFloat((2 * (room.width + room.length)).toFixed(2));
+    }
+
+    // ── Ceny ────────────────────────────────────────────
+
     onMounted(async () => {
       try {
         const resp = await fetch('/api/prices/all');
         allPrices.value = await resp.json();
       } catch (e) {
-        console.warn('Nie udało się pobrać cen', e);
+        console.warn('Nie udało się pobrać cen:', e);
       }
     });
 
@@ -476,27 +503,34 @@ createApp({
       return (data[store] || []).map(p => ({ ...p, store }));
     }
 
-    function isSelected(idx, surface, prod) {
-      const mat = rooms.value[idx][surface + '_material'];
+    function isSelected(room, surface, prod) {
+      const mat = room[surface + '_material'];
       return mat && mat.product.name === prod.name && mat.product.store === prod.store;
     }
 
-    function selectMat(idx, surface, category, prod) {
-      rooms.value[idx][surface + '_material'] = { category, product: prod };
+    function selectMat(room, surface, category, prod) {
+      room[surface + '_material'] = { category, product: { ...prod } };
+    }
+
+    // ── Pomieszczenia ────────────────────────────────────
+
+    function selectRoom(i) {
+      activeRoomIdx.value = i;
+      activeTab.value = 'materials';
     }
 
     function addRoom() {
       formError.value = '';
       if (!form.width || !form.length || form.width <= 0 || form.length <= 0) {
-        formError.value = 'Podaj prawidłowe wymiary pomieszczenia.';
+        formError.value = 'Podaj prawidłowe wymiary (szerokość i długość > 0).';
         return;
       }
-      rooms.value.push({
-        id: nextId++,
-        name:   form.name,
-        width:  form.width,
-        length: form.length,
-        height: form.height || 2.6,
+      const room = reactive({
+        id:      nextId++,
+        name:    form.name,
+        width:   form.width,
+        length:  form.length,
+        height:  form.height || 2.6,
         windows: form.windows ?? 1,
         doors:   form.doors   ?? 1,
         floorCat:   '',
@@ -506,18 +540,32 @@ createApp({
         wall_material:    null,
         ceiling_material: null,
       });
+      rooms.value.push(room);
       activeRoomIdx.value = rooms.value.length - 1;
       activeTab.value = 'materials';
     }
 
     function removeRoom(i) {
       rooms.value.splice(i, 1);
-      if (activeRoomIdx.value >= rooms.value.length) {
+      if (rooms.value.length === 0) {
+        activeRoomIdx.value = null;
+      } else if (activeRoomIdx.value >= rooms.value.length) {
         activeRoomIdx.value = rooms.value.length - 1;
       }
     }
 
+    // ── Kosztorys ────────────────────────────────────────
+
+    async function switchToResult() {
+      activeTab.value = 'result';
+      await computeResult();
+    }
+
     async function computeResult() {
+      if (rooms.value.length === 0) {
+        calcResult.value = { rooms: [], grand_total: 0 };
+        return;
+      }
       calcLoading.value = true;
       calcError.value   = '';
       calcResult.value  = null;
@@ -536,15 +584,18 @@ createApp({
           })),
         };
         const resp = await fetch('/api/calculate', {
-          method:  'POST',
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify(payload),
+          body: JSON.stringify(payload),
         });
         const data = await resp.json();
-        if (data.error) { calcError.value = data.error; return; }
+        if (!resp.ok || data.error) {
+          calcError.value = data.error || 'Błąd serwera.';
+          return;
+        }
         calcResult.value = data;
         // Rozwiń wszystkie pomieszczenia domyślnie
-        data.rooms.forEach(r => openRooms.add(r.room_name));
+        data.rooms.forEach(r => { openRooms[r.room_name] = true; });
       } catch (e) {
         calcError.value = 'Błąd połączenia z serwerem.';
       } finally {
@@ -553,9 +604,10 @@ createApp({
     }
 
     function toggleRoom(name) {
-      if (openRooms.has(name)) openRooms.delete(name);
-      else openRooms.add(name);
+      openRooms[name] = !openRooms[name];
     }
+
+    // ── Helpers ──────────────────────────────────────────
 
     function shortCat(cat) {
       const map = {
@@ -565,45 +617,26 @@ createApp({
         farba_do_scian:   'Farba',
         farba_sufitowa:   'Farba suf.',
         tapeta:           'Tapeta',
-        wykładzina:       'Wykładzina',
+        'wykładzina':     'Wykładzina',
       };
       return map[cat] || cat;
     }
 
     const fmt = v => Number(v).toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-    function printPage() { window.print(); }
-
-    // Computed helpers for template
-    const floorArea = computed(() => {
-      if (activeRoomIdx.value === null) return 0;
-      const r = rooms.value[activeRoomIdx.value];
-      return (r.width * r.length).toFixed(2);
-    });
-    const wallArea = computed(() => {
-      if (activeRoomIdx.value === null) return 0;
-      const r = rooms.value[activeRoomIdx.value];
-      const perim = 2 * (r.width + r.length);
-      const gross = perim * r.height;
-      const ded = r.windows * 1.5 + r.doors * 1.9;
-      return Math.max(gross - ded, 0).toFixed(2);
-    });
-
-    // Expose computed to rooms
-    const roomsWithAreas = computed(() => rooms.value.map(r => ({
-      ...r,
-      floor_area: parseFloat((r.width * r.length).toFixed(2)),
-      wall_area:  parseFloat(Math.max(2*(r.width+r.length)*r.height - r.windows*1.5 - r.doors*1.9, 0).toFixed(2)),
-    })));
-
     return {
-      selectedStore, activeTab, activeRoomIdx, form, formError,
-      rooms: roomsWithAreas, calcResult, calcLoading, calcError, openRooms, allPrices,
-      addRoom, removeRoom, productsFor, isSelected, selectMat,
-      computeResult, toggleRoom, shortCat, fmt, printPage, floorArea, wallArea,
+      selectedStore, activeTab, activeRoomIdx, activeRoom,
+      form, formError, rooms,
+      calcResult, calcLoading, calcError, openRooms, allPrices,
+      floorAreaOf, wallAreaOf, perimeterOf,
+      selectRoom, addRoom, removeRoom,
+      productsFor, isSelected, selectMat,
+      switchToResult, toggleRoom, shortCat, fmt,
+      window,
     };
   }
 }).mount('#app');
 </script>
+{% endraw %}
 </body>
 </html>
